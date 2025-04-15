@@ -66,7 +66,7 @@ public class CamundaService{
         return instance.getId();
     }
 
-    private void waitForCompletion(String processInstanceId) throws ApiException {
+    private void waitForCompletion(String processInstanceId) {
         boolean finished = false;
         while (!finished) {
             finished = checkIfInstanceIsCompleted(processInstanceId);
