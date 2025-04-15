@@ -11,8 +11,9 @@ public class ExternalTaskClientConfig {
     @Bean
     public ExternalTaskClient externalTaskClient(){
         return ExternalTaskClient.create()
-                .baseUrl("http://camundaEngine:8080/engine-rest")
-                .asyncResponseTimeout(5000)
+                .baseUrl("http://localhost:8080/engine-rest")
+//                .baseUrl("http://camundaEngine:8080/engine-rest")
+                .asyncResponseTimeout(100)
                 .build();
     }
 }

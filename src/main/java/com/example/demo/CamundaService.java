@@ -72,7 +72,7 @@ public class CamundaService{
             finished = checkIfInstanceIsCompleted(processInstanceId);
             if (!finished) {
                 try {
-                    Thread.sleep(0);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }

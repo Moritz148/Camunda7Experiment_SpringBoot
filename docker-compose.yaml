@@ -1,8 +1,10 @@
 services:
   camundaEngine:
     #    image: camunda/camunda-bpm-platform:latest
-    image: moritz148/camunda7experiment:latest
-#    image: moritz148/c7processenginetest:v1
+#    image: moritz148/camunda7experiment:latest
+    image: moritz148/camunda7experiment:engine
+#    image: camunda/camunda-bpm-platform:run-7.23.0
+    #    image: moritz148/c7processenginetest:v1
     container_name: camundaEngine
     restart: unless-stopped
     #    ports:
@@ -21,7 +23,8 @@ services:
     #image: moritz148/c7experiment:testv2
     #    image: moritz148/c7experiment:newProcess
 #    image: moritz148/c7experimentspringboot:v1
-    image: moritz148/camunda7experiment:v1
+#    image: moritz148/camunda7experiment:v1
+    image: moritz148/camunda7experiment:v2
     container_name: c7experiment
     restart: no
     depends_on:

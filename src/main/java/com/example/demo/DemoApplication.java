@@ -10,6 +10,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 		ctx.close();
+		System.exit(0);  // Anwendung komplett beenden
 	}
 
 }
