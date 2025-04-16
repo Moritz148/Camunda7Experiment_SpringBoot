@@ -7,18 +7,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExternalTakWorkers {
+public class ExternalTaskWorkers {
 
-    private static final Logger log = LoggerFactory.getLogger(ExternalTakWorkers.class);
+    private static final Logger log = LoggerFactory.getLogger(ExternalTaskWorkers.class);
     private final ExternalTaskClient client;
 
-    public ExternalTakWorkers(ExternalTaskClient client) {
+    public ExternalTaskWorkers(ExternalTaskClient client) {
         this.client = client;
     }
 
     @PostConstruct
     public void subscribe(){
-        log.info("Subscribing to external tasks");
+       /* log.info("Subscribing to external tasks");
         client.subscribe("task1")
                 .lockDuration(1000)
                 .handler((externalTask, externalTaskService) -> {
@@ -88,6 +88,22 @@ public class ExternalTakWorkers {
                     log.info("Task10 started");
                     externalTaskService.complete(externalTask);
                     log.info("Task10 ended");
+                }).open();*/
+        //Liste mit Task-Namen
+        String[] taskNames = {"task1", "task2", "task3", "task4", "task5", "task6", "task7", "task8", "task9", "task10"};
+
+        for(String taskName : taskNames) {
+            subscribeToTask(taskName);
+        }
+    }
+
+    private void subscribeToTask(String taskName){
+        client.subscribe(taskName)
+                .lockDuration(1000)
+                .handler((externalTask, externalTaskService) -> {
+//                    System.out.println("Task " + taskName + " started");
+                    externalTaskService.complete(externalTask);
+//                    System.out.println("Task " + taskName + " completed");
                 }).open();
     }
 }

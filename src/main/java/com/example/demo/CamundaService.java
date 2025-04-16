@@ -12,6 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 /*@Service
 public class CamundaService {
 
@@ -49,13 +53,26 @@ public class CamundaService{
 
     public void startMultipleProcessInstances(int numberOfInstances) throws ApiException {
         for (int i = 1; i < numberOfInstances+1; i++) {
+            //aktuellen timestamp ermitteln in Millisekunden
+            long timestamp = System.currentTimeMillis();
+            Instant instant = Instant.ofEpochMilli(timestamp);
+
+            //Zeit in Format HH:MM:SS.sss umwandeln
+            String timestampFormatted = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
+                    .withZone(ZoneId.systemDefault())
+                    .format(instant);
+
+            //Start der Prozesinstanz
             String processInstanceId = startProcessInstance();
-//            System.out.println("Instanz " + i + " gestartet: " + processInstanceId);
-            log.info("Instanz " + i + " gestartet: " + processInstanceId);
+
+            //Ausgabe Start mit timestamp
+            System.out.printf("Instanz %d gestartet: %s - Timestamp: %s%n", i, processInstanceId, timestampFormatted);
+
+            //Warten auf Abschluss der Instanz
             waitForCompletion(processInstanceId);
 
-//            System.out.println("Instanz " + i + " abgeschlossen.");
-            log.info("Instanz " + i + " abgeschlossen.");
+            //Ausgabe Ende mit timestamp
+            System.out.printf("Instanz %d abgeschlossen: %s - Timestamp: %s%n", i, processInstanceId, timestampFormatted);
         }
     }
     private String startProcessInstance() throws ApiException {
