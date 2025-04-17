@@ -1,14 +1,8 @@
 services:
   camundaEngine:
-    #    image: camunda/camunda-bpm-platform:latest
-#    image: moritz148/camunda7experiment:latest
     image: moritz148/camunda7experiment:engine
-#    image: camunda/camunda-bpm-platform:run-7.23.0
-    #    image: moritz148/c7processenginetest:v1
     container_name: camundaEngine
     restart: unless-stopped
-    #    ports:
-    #      - "8080:8080"
     healthcheck:
       test: ["CMD", "curl", "-fs", "http://camundaEngine:8080/engine-rest/engine"]
       interval: 20s
@@ -18,13 +12,6 @@ services:
       - camunda-platform
 
   c7experiment:
-    #image: moritz148/cam7exp:latest
-    #image: moritz148/cam7exp:test
-    #image: moritz148/c7experiment:testv2
-    #    image: moritz148/c7experiment:newProcess
-#    image: moritz148/c7experimentspringboot:v1
-#    image: moritz148/camunda7experiment:v1
-#    image: moritz148/camunda7experiment:v3
     image: moritz148/camunda7experiment:single
     container_name: c7experiment
     restart: no
