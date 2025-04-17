@@ -14,7 +14,10 @@ public class CamundaStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //Anzahl an zu startenden Prozessinstanzen
         int numberOfInstances = 100;
+
 //        camundaService.startProcessInstance("typicalC7process");
         camundaService.startMultipleProcessInstances(numberOfInstances);
     }

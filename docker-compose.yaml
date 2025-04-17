@@ -25,7 +25,7 @@ services:
 #    image: moritz148/c7experimentspringboot:v1
 #    image: moritz148/camunda7experiment:v1
 #    image: moritz148/camunda7experiment:v3
-    image: moritz148/camunda7experiment:benchmark
+    image: moritz148/camunda7experiment:single
     container_name: c7experiment
     restart: no
     depends_on:

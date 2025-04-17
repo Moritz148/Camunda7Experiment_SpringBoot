@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExternalTaskWorkers {
 
-    private static final Logger log = LoggerFactory.getLogger(ExternalTaskWorkers.class);
     private final ExternalTaskClient client;
 
     public ExternalTaskWorkers(ExternalTaskClient client) {
@@ -90,7 +89,7 @@ public class ExternalTaskWorkers {
                     log.info("Task10 ended");
                 }).open();*/
         //Liste mit Task-Namen
-        String[] taskNames = {"task1", "task2", "task3", "task4", "task5", "task6", "task7", "task8", "task9", "task10"};
+        String[] taskNames = {"task1"};
 
         for(String taskName : taskNames) {
             subscribeToTask(taskName);
@@ -101,9 +100,9 @@ public class ExternalTaskWorkers {
         client.subscribe(taskName)
                 .lockDuration(1000)
                 .handler((externalTask, externalTaskService) -> {
-//                    System.out.println("Task " + taskName + " started");
+                    System.out.println("Task " + taskName + " started");
                     externalTaskService.complete(externalTask);
-//                    System.out.println("Task " + taskName + " completed");
+                    System.out.println("Task " + taskName + " completed");
                 }).open();
     }
 }
