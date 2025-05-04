@@ -100,9 +100,9 @@ public class ExternalTaskWorkers {
         client.subscribe(taskName)
                 .lockDuration(1000)
                 .handler((externalTask, externalTaskService) -> {
-                    System.out.println("Task " + taskName + " started");
+                    //System.out.println("Task " + taskName + " started");
                     externalTaskService.complete(externalTask);
-                    System.out.println("Task " + taskName + " completed");
+                    //System.out.println("Task " + taskName + " completed");
                 }).open();
     }
 }

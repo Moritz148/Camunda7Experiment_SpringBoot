@@ -42,7 +42,6 @@ public class CamundaService {
 
 @Service
 public class CamundaService{
-    private static final Logger log = LoggerFactory.getLogger(CamundaService.class);
     private final ProcessDefinitionApi processDefinitionApi;
     private final HistoricProcessInstanceApi historicProcessInstanceApi;
 
@@ -65,14 +64,17 @@ public class CamundaService{
             //Start der Prozesinstanz
             String processInstanceId = startProcessInstance();
 
-            //Ausgabe Start mit timestamp
-            System.out.printf("Instanz %d gestartet: %s - Timestamp: %s%n", i, processInstanceId, timestampFormatted);
-
+            if(i == 1) {
+                //Ausgabe Start mit timestamp
+                System.out.printf("Instance #%d STARTED - %s%n", i, timestampFormatted);
+            }
             //Warten auf Abschluss der Instanz
             waitForCompletion(processInstanceId);
 
-            //Ausgabe Ende mit timestamp
-            System.out.printf("Instanz %d abgeschlossen: %s - Timestamp: %s%n", i, processInstanceId, timestampFormatted);
+            if(i == numberOfInstances) {
+                //Ausgabe Ende mit timestamp
+                System.out.printf("Instance #%d DONE - %s%n", i, timestampFormatted);
+            }
         }
     }
     private String startProcessInstance() throws ApiException {
