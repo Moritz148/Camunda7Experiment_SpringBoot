@@ -2,7 +2,7 @@ services:
   camundaEngine:
     image: moritz148/camunda7experiment:engine
     container_name: camundaEngine
-    restart: unless-stopped
+    restart: "unless-stopped"
     healthcheck:
       test: ["CMD", "curl", "-fs", "http://camundaEngine:8080/engine-rest/engine"]
       interval: 20s
@@ -14,7 +14,7 @@ services:
   c7experiment:
     image: moritz148/camunda7experiment:single
     container_name: c7experiment
-    restart: no
+    restart: "no"
     depends_on:
       camundaEngine:
         condition: service_healthy
