@@ -21,6 +21,7 @@ services:
     networks:
       - camunda-platform
 
+
 networks:
   camunda-platform:
     driver: bridge
