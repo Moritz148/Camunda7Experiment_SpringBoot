@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExternalTaskWorkers {
 
-    private static final Logger log = LoggerFactory.getLogger(ExternalTaskWorkers.class);
     private final ExternalTaskClient client;
 
     public ExternalTaskWorkers(ExternalTaskClient client) {
