@@ -15,7 +15,7 @@ public class CamundaRestClientConfig {
     @Primary
     public ApiClient camundaApiClient(){
         ApiClient apiClient = new ApiClient();
-        apiClient.setBasePath("http://camundaEngine:8080/engine-rest");
+        apiClient.setBasePath("http://engine:8080/engine-rest");
 //        apiClient.setBasePath("http://localhost:8080/engine-rest");
         return apiClient;
     }

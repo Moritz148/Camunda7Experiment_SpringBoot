@@ -42,7 +42,6 @@ public class CamundaService {
 
 @Service
 public class CamundaService{
-    private static final Logger log = LoggerFactory.getLogger(CamundaService.class);
     private final ProcessDefinitionApi processDefinitionApi;
     private final HistoricProcessInstanceApi historicProcessInstanceApi;
 
