@@ -12,7 +12,7 @@ services:
       - camunda-platform
 
   experiment:
-    image: moritz148/camunda7experiment:benchmark
+    image: moritz148/camunda7experiment:complex-long
     container_name: experiment
     restart: "no"
     depends_on:
