@@ -10,7 +10,7 @@ services:
 
 flow:
   - name: runC7Experiment
-    container: c7experiment
+    container: experiment
     commands:
       - type: console
         command: java -jar demoC7Application.jar
