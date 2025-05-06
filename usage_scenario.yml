@@ -5,12 +5,12 @@ description: usage_scenario for camunda7experiment
 compose-file: !include docker-compose.yaml
 
 services:
-  c7experiment:
+  experiment:
     command: /bin/sh
 
 flow:
   - name: runC7Experiment
-    container: c7experiment
+    container: experiment
     commands:
       - type: console
         command: java -jar demoC7Application.jar
