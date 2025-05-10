@@ -80,7 +80,7 @@ public class CamundaService{
     private String startProcessInstance() throws ApiException {
         StartProcessInstanceDto instanceDto = new StartProcessInstanceDto();
 
-        ProcessInstanceWithVariablesDto instance=  processDefinitionApi.startProcessInstanceByKey("C7_complex_long", instanceDto);
+        ProcessInstanceWithVariablesDto instance=  processDefinitionApi.startProcessInstanceByKey("C7_complex-long", instanceDto);
 
         return instance.getId();
     }
