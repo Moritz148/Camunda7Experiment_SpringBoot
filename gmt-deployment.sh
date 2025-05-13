@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 GMT_TOKEN='guihe_ASju4Fsa-FAshzh3zFH))afhhz'
 
-json_body='{"name":"C7-complex_long_final","email":"moritz.schwarz@envite.de","image_url":"","repo_url":"https://github.com/Moritz148/Camunda7Experiment_SpringBoot.git","filename":"","branch":"complex_long","machine_id":"6","schedule_mode":"one-off"}'
+json_body='{"name":"C7-benchmark_final","email":"moritz.schwarz@envite.de","image_url":"","repo_url":"https://github.com/Moritz148/Camunda7Experiment_SpringBoot.git","filename":"","branch":"benchmark","machine_id":"6","schedule_mode":"one-off"}'
 
 # Submit 30 times to GMT
 for ((i=1; i<=30; i++)); do
