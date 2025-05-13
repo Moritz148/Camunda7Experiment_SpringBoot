@@ -2,43 +2,15 @@ package com.example.demo;
 
 import org.camunda.community.rest.client.api.HistoricProcessInstanceApi;
 import org.camunda.community.rest.client.api.ProcessDefinitionApi;
-import org.camunda.community.rest.client.api.ProcessInstanceApi;
 import org.camunda.community.rest.client.dto.HistoricProcessInstanceDto;
-import org.camunda.community.rest.client.dto.ProcessInstanceDto;
 import org.camunda.community.rest.client.dto.ProcessInstanceWithVariablesDto;
 import org.camunda.community.rest.client.dto.StartProcessInstanceDto;
 import org.camunda.community.rest.client.invoker.ApiException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-
-/*@Service
-public class CamundaService {
-
-
-    private static final Logger log = LoggerFactory.getLogger(CamundaService.class);
-    private final ProcessDefinitionApi processDefinitionApi;
-
-    public CamundaService(ProcessInstanceApi historicProcessInstanceApi, ProcessDefinitionApi processDefinitionApi) {
-        this.processDefinitionApi = processDefinitionApi;
-    }
-
-    public void startProcessInstance(String processKey){
-        StartProcessInstanceDto instanceDto = new StartProcessInstanceDto();
-
-        try {
-            ProcessInstanceWithVariablesDto result = processDefinitionApi.startProcessInstanceByKey(processKey, instanceDto);
-//            System.out.println("Prozessinstanz gestartet mit ID: " + result.getId());
-            log.info("Prozessinstanz gestartet mit ID: " + result.getId());
-        } catch (ApiException e){
-            System.err.println("Fehler beim Starten der Prozessinstanz: " + e.getResponseBody());
-        }
-    }
-}*/
 
 @Service
 public class CamundaService{
@@ -53,11 +25,11 @@ public class CamundaService{
     public void startMultipleProcessInstances(int numberOfInstances) throws ApiException {
         for (int i = 1; i < numberOfInstances+1; i++) {
             //aktuellen timestamp ermitteln in Millisekunden
-            long timestamp = System.currentTimeMillis();
-            Instant instant = Instant.ofEpochMilli(timestamp);
+            long timestampStart = System.currentTimeMillis();
+            Instant instant = Instant.ofEpochMilli(timestampStart);
 
             //Zeit in Format HH:MM:SS.sss umwandeln
-            String timestampFormatted = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
+            String timestampFormattedStart = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
                     .withZone(ZoneId.systemDefault())
                     .format(instant);
 
@@ -66,14 +38,21 @@ public class CamundaService{
 
             if(i == 1) {
                 //Ausgabe Start mit timestamp
-                System.out.printf("Instance #%d STARTED - %s%n", i, timestampFormatted);
+                System.out.printf("Instance #%d STARTED - %s%n", i, timestampFormattedStart);
             }
             //Warten auf Abschluss der Instanz
             waitForCompletion(processInstanceId);
 
             if(i == numberOfInstances) {
                 //Ausgabe Ende mit timestamp
-                System.out.printf("Instance #%d DONE - %s%n", i, timestampFormatted);
+                long timestampEnd = System.currentTimeMillis();
+                Instant instant2 = Instant.ofEpochMilli(timestampEnd);
+
+                //Zeit in Format HH:MM:SS.sss umwandeln
+                String timestampFormattedEnd = DateTimeFormatter.ofPattern("HH:mm:ss.SSS")
+                        .withZone(ZoneId.systemDefault())
+                        .format(instant);
+                System.out.printf("Instance #%d DONE - %s%n", i, timestampFormattedEnd);
             }
         }
     }
